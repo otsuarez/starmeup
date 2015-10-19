@@ -1,0 +1,20 @@
+---
+debug_mode_on: true
+component_repository: frontend-default
+component_name: frontend-default
+component_description: FrontEnd Default
+component_uri: http://www.github.com/acme-dot-io/frontend-default
+
+# artifact
+component_jfrog_server: main_jfrog
+component_input: main_jfrog
+component_input_type: artifact
+component_artifact_filename_prefix: frontend-default
+
+component_publish_target: main_apt
+component_deploy_dir: frontEnd/default
+
+component_artifact_filename_sufix: ".zip"
+component_artifact_filename: "{{ component }}-{{ version }}{{ component_artifact_filename_sufix }}"
+component_input_uri: "frontend-default/"
+

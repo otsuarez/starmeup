@@ -1,0 +1,23 @@
+---
+# package
+component_package_name_prefix: acme
+
+component_package_publish:
+  branch:
+    master:
+      aptly:
+        - { "repo" : "staging", "distribution": "acme-staging", "endpoint" : "staging" }
+        - { "repo" : "prod", "distribution": "acme-prod", "endpoint" : "prod" }
+    develop:
+      aptly:
+        - { "repo" : "testing", "distribution": "acme-testing", "endpoint" : "testing" }
+
+pkg:
+  rpm:
+    base_prefix : /home/httpd/sites/elvira.acme.com
+    user: "--rpm-user httpd"
+    group: "--deb-group httpd"
+  deb:
+    base_prefix : /var/www/sites/elvira.acme.com
+    user: "--deb-user root"
+    group: "--deb-group root"

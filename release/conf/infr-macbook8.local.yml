@@ -1,0 +1,44 @@
+---
+_meta:
+  hostvars:
+    abl1:
+      lb_server: lb1
+    abl2:
+      lb_server: lb1
+    sal1:
+      lb_server: lb1
+    sal2:
+      lb_server: lb1
+    web1:
+      lb_server: lb1
+    web2:
+      lb_server: lb1
+    web3:
+      lb_server: lb1
+    vagrant-nms:
+      lb_server: lb1
+
+all:
+  canary:
+    - web1
+    - abl1
+    - sal1
+
+abl:
+  hosts:
+    - abl1
+    - abl2
+sal:
+  hosts:
+    - sal1
+    - sal2
+
+web:
+  hosts:
+    - web1
+    - web2
+    - web3
+
+nms:
+  hosts:
+    - infr-macbook8.local

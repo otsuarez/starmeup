@@ -1,0 +1,25 @@
+web_dir: /var/www/sites
+lib_dir: /var/lib
+deploy_user: rls
+deploy_group: users
+aptly:
+  repos:
+    - { 'repo' : 'iris-conf', 'component' : 'acme', 'distribution' : 'acme-iris', 'comment' : " prod-conf Environment Repository", 'architectures' : 'noarch,i386,amd64'}
+    - { 'repo' : 'prod', 'component' : 'acme', 'distribution' : 'acme-prod', 'comment' : " prod Environment Repository" , 'architectures' : 'noarch,i386,amd64'}
+    - { 'repo' : 'prod-conf', 'component' : 'acme', 'distribution' : 'acme-prod', 'comment' : " prod-conf Environment Repository", 'architectures' : 'noarch,i386,amd64'}
+    - { 'repo' : 'staging', 'component' : 'acme', 'distribution' : 'acme-staging', 'comment' : " staging Environment Repository" , 'architectures' : 'noarch,i386,amd64'}
+    - { 'repo' : 'staging-conf', 'component' : 'acme', 'distribution' : 'acme-staging', 'comment' : " staging-conf Environment Repository", 'architectures' : 'noarch,i386,amd64'}
+    - { 'repo' : 'testing', 'component' : 'acme', 'distribution' : 'acme-testing', 'comment' : " testing Environment Repository" , 'architectures' : 'noarch,i386,amd64'}
+    - { 'repo' : 'testing-conf', 'component' : 'acme', 'distribution' : 'acme-testing', 'comment' : " testing-conf Environment Repository", 'architectures' : 'noarch,i386,amd64'}
+    - { 'repo' : 'static-images', 'component' : 'acme', 'distribution' : 'acme-static-images', 'comment' : " static-images Environment Repository" , 'architectures' : 'noarch,i386,amd64'}
+    - { 'repo' : 'c2c', 'component' : 'acme', 'distribution' : 'acme-testing', 'comment' : " c2c  Repository" , 'architectures' : 'noarch,i386,amd64'}
+  publish:
+    - { 'repo' : 'iris-conf', 'architectures' : 'noarch,i386,amd64', 'endpoint_prefix' : 'iris-conf'}
+    - { 'repo' : 'prod', 'architectures' : 'noarch,i386,amd64', 'endpoint_prefix' : 'prod'}
+    - { 'repo' : 'prod-conf', 'architectures' : 'noarch,i386,amd64', 'endpoint_prefix' : 'prod-conf'}
+    - { 'repo' : 'staging', 'architectures' : 'noarch,i386,amd64', 'endpoint_prefix' : 'staging'}
+    - { 'repo' : 'staging-conf', 'architectures' : 'noarch,i386,amd64', 'endpoint_prefix' : 'staging-conf'}
+    - { 'repo' : 'testing', 'architectures' : 'noarch,i386,amd64', 'endpoint_prefix' : 'testing'}
+    - { 'repo' : 'testing-conf', 'architectures' : 'noarch,i386,amd64', 'endpoint_prefix' : 'testing-conf'}
+    - { 'repo' : 'static-images', 'architectures' : 'noarch,i386,amd64', 'endpoint_prefix' : 's3:static-images:'}
+    - { 'repo' : 'c2c', 'architectures' : 'noarch,i386,amd64', 'endpoint_prefix' : 's3:c2c:'}

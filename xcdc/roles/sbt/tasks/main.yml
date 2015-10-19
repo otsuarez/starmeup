@@ -1,0 +1,6 @@
+---
+- name: download sbt deb package
+  get_url: url=https://dl.bintray.com/sbt/debian/sbt-{{ sbt_version }}.deb dest=/var/tmp/sbt-{{ sbt_version }}.deb
+
+- name: install sbt 
+  apt: deb=/var/tmp/sbt-{{ sbt_version }}.deb

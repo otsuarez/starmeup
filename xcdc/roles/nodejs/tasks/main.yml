@@ -1,0 +1,32 @@
+---
+# file: roles/nodejs/tasks/main.yml
+
+- name: installing packages
+  apt: name={{ item }} state=installed
+  with_items:
+  - python-software-properties 
+  - python 
+  - g++ 
+  - make
+  tags:
+  - nodejs
+
+- name: installing nodejs repository
+  apt_repository: repo='ppa:chris-lea/node.js'
+  tags:
+  - nodejs
+
+- name: installing package
+  apt: name={{ item }} state=installed
+  with_items:
+  - nodejs
+  tags:
+  - nodejs
+
+- name: installing nodejs packages
+  npm: name={{ item }} global=yes
+  with_items:
+  - grunt-cli
+  - grunt-contrib-jshint
+  tags:
+  - nodejs

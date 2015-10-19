@@ -1,0 +1,15 @@
+---
+# file: roles/jenkins/tasks/github-creds.yml
+
+- name: ensure user jenkins exists
+  user: name={{ jenkins_user }} state=present shell={{ jenkins_shell }} move_home=yes home={{ jenkins_homedir }}
+
+- name: ensure ssh directory for user jenkins exists
+  file: dest={{ jenkins_homedir }}/.ssh state=directory owner={{ jenkins_user }} group={{ jenkins_group }} mode=0700
+
+- name: Copy ssh files for jenkins user access to github
+  copy: src=jenkins/ssh/{{ item }} dest={{ jenkins_homedir }}/.ssh/{{ item }}  mode=0600 owner={{ jenkins_user }} group={{ jenkins_group }}
+  with_items:
+    - config
+    - id_rsa.github
+    - known_hosts

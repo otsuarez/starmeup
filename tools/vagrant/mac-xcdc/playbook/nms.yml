@@ -1,0 +1,61 @@
+---
+- name: nms servers playbook
+  hosts: all
+  gather_facts: false
+  vars:
+    - user: vagrant
+    - group: vagrant
+    - homedir: /home/vagrant
+    - git_dir: /home/local/git
+    - component_git_uri: startmeup
+    - input_url: git@github.com:acme-dot-io
+  tasks:
+  - name: install packages
+    apt: name={{ item }}
+    with_items:
+     - python-pip
+     - gcc
+     - screen
+     - make
+     - autoconf
+     - python-dev
+     - git
+     - libpcre3-dev
+
+  - name: installing python modules
+    pip: name={{ item }}
+    with_items:
+      - ansible
+
+  - name: ensure ssh home directory
+    action: file dest={{ homedir }}/.ssh state=directory owner={{ user}} group={{ group }} mode=0700
+
+  - name: copying ssh config for jenkins  user
+    action: copy src=files/ssh/config.github dest={{ homedir }}/.ssh/config force=no owner={{ user}} group={{ group }} mode=0600
+
+  - name: copying github keys for {{ user}}  user
+    action: copy src=files/ssh/id_rsa.github dest={{ homedir }}/.ssh/id_rsa.github force=no owner={{ user}} group={{ group }} mode=0600
+
+  - name: copying ssh private
+    action: copy src=files/ssh/vagrant_insecure_private_key dest={{ homedir }}/.ssh/id_rsa force=no owner={{ user}} group={{ group }} mode=0600
+
+  - name: SSH | Add Git repo host key to known_hosts file
+    lineinfile: create=yes dest={{ homedir}}/.ssh/known_hosts line='ssh.github.com,192.30.252.150 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfACMEs9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==' state=present owner={{ user}} group={{ group }} mode=0600
+
+  - name: git - Check if repo exists
+    stat: path={{ git_dir }}/{{ component_git_uri }}
+    register: check_path
+
+  # cloning the repository
+
+  - name: setup-git creating parent git repository directory if required
+    file: path={{ git_dir }} state=directory owner={{ user }}  group={{ group }} mode=0755 recurse=yes
+    sudo: yes
+    when: check_path.stat.exists == false
+
+  - name: setup-git - git clone the repository
+    command: >
+     git clone {{ input_url }}/{{ component_git_uri }}.git
+     chdir={{ git_dir }}
+    sudo: no
+    when: check_path.stat.exists == false

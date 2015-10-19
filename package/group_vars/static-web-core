@@ -1,0 +1,23 @@
+---
+component_repository: web-core
+component_description: Web Core Statics
+component_uri: http://www.github.com/acme-dot-io/web-core
+
+# artifact
+component_jfrog_server: main_jfrog
+component_input: main_jfrog
+component_input_type: artifact
+component_artifact_filename_prefix: web-core
+
+component_publish_target: main_apt
+component_deploy_dir: 
+
+component_artifact_filename_sufix: ".zip"
+component_artifact_filename: "{{ component_repository }}-{{ version }}{{ component_artifact_filename_sufix }}"
+component_input_uri: "web-core/"
+
+component_package_excluded_extensions:
+  - \.php 
+  - \.json 
+  - \.po 
+  - \.mo 

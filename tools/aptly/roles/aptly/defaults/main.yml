@@ -1,0 +1,7 @@
+web_dir: /var/www/sites
+lib_dir: /var/lib
+deploy_user: root
+deploy_group: root
+aptly:
+  repositories:
+    - { 'repo' : 'prod', 'component' : 'acme', 'distribution' : 'acme-prod', 'comment' : " prod Environment Repository" }

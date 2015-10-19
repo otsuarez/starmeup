@@ -1,0 +1,6 @@
+containers:
+  - { name: 'web2.dc-iris.acme.ir', status: 'started', interfaces: [{ 'flags':'up','link':'br0','name':'eth0','ipv4.gateway':'192.168.1.1','ipv4':'192.168.2.2/22'},{ 'flags':'up','link':'br2','name':'eth2','ipv4':'172.16.2.2/22'}] }
+  - { name: 'smaug1.dc-iris.acme.ir', status: 'started', interfaces: [{ 'flags':'up','link':'br0','name':'eth0','ipv4.gateway':'192.168.1.1','ipv4':'192.168.2.30/22'},{ 'flags':'up','link':'br2','name':'eth2','ipv4':'172.16.2.30/22'}] }
+  - { name: 'sal1.dc-iris.acme.ir', status: 'started', interfaces: [{ 'flags':'up','link':'br0','name':'eth0','ipv4.gateway':'192.168.1.1','ipv4':'192.168.2.90/22'},{ 'flags':'up','link':'br2','name':'eth2','ipv4':'172.16.2.90/22'}] }
+  - { name: 'proxy2.dc-iris.acme.ir', status: 'started', interfaces: [{ 'flags':'up','link':'br0','name':'eth0','ipv4.gateway':'192.168.1.1','ipv4':'192.168.2.151/22'},{ 'flags':'up','link':'br2','name':'eth2','ipv4':'172.16.2.151/22'}] }
+  - { name: 'bs-app-reports.dc-iris.acme.ir', status: 'started', interfaces: [{ 'flags':'up','link':'br0','name':'eth0','ipv4.gateway':'192.168.1.1','ipv4':'192.168.2.1/22'},{ 'flags':'up','link':'br2','name':'eth2','ipv4':'172.16.2.1/22'}] }

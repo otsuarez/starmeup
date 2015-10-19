@@ -1,0 +1,27 @@
+---
+# https://gist.github.com/garethrees/5591027
+# https://gist.github.com/jerm/fc7f33f6a6d6534f6fde
+- name: check current timezone
+  shell: cat /etc/timezone
+  register: current_zone
+
+- name: check localtime file
+  stat: path={{ acme_server.localtime_file }}
+  register: st
+
+- name: Delete old timezone 
+  file: path={{ acme_server.localtime_file }}
+        state=absent
+  when: not st.stat.islnk 
+
+- name: Set timezone 
+  file: src={{ acme_server.timezone_dir }}/{{ acme_server.timezone }}
+        dest={{ acme_server.localtime_file }}
+        owner=root
+        group=root
+        mode=0644
+        backup=yes
+        state=link
+  when: current_zone.stdout != acme_server.timezone and acme_server is defined
+  notify:
+    - update ubuntu timezone

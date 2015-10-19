@@ -1,0 +1,22 @@
+---
+# common
+#component_include_file: group_vars/octopush-common.yml
+
+#component_repository: rls
+component_name: octopush-conf
+component_description: This is Octopush aka The Hulk
+component_uri: http://www.github.com/acme-dot-io/octopush
+
+# jfrog
+#component_jfrog_uri: octopush
+
+component_input: github
+component_output: deb
+component_publish_target: main_apt
+component_arch: noarch
+component_component: rls
+component_category: rls
+component_deploy_dir: octopush.acme.com
+#component_package_name_prefix: acme-octopush
+
+

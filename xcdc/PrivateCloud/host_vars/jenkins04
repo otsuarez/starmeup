@@ -1,0 +1,4 @@
+roles:
+ - infr-common
+ - infr-jenkins
+ - jenkins

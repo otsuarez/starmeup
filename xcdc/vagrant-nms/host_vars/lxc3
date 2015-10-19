@@ -1,0 +1,6 @@
+containers:
+- { name: 'web3', ip: '192.168.2.2', ipbe: '172.16.2.2', status: 'auto' }
+- { name: 'smaug2', ip: '192.168.2.31', ipbe: '172.16.2.31', status: 'auto' } 
+- { name: 'sal2', ip: '192.168.2.91', ipbe: '172.16.2.91', status: 'auto' }
+- { name: 'dal1', ip: '192.168.2.160', ipbe: '172.16.2.160', status: 'auto’ }
+- { name: 'bs-app-qh', ip: '192.168.2.210', ipbe: '172.16.2.210', status: 'auto' }

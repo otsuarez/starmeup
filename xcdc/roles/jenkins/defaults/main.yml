@@ -1,0 +1,64 @@
+---
+
+# github-access.yml
+jenkins_user: jenkins
+jenkins_group: jenkins
+jenkins_homedir: /var/lib/jenkins
+jenkins_shell: /bin/bash
+
+jenkins_root: '/var/lib/jenkins'
+jenkins:
+  repo: 'deb http://pkg.jenkins-ci.org/debian binary/' # Jenkins repository
+  key: 'http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key' # Jenkins key
+  packages: # Jenkins dependencies
+#    - 'openjdk-7-jre'
+#    - 'openjdk-7-jdk'
+    - 'openjdk-7-jdk'
+    - 'git'
+    - 'curl'
+    - 'jenkins'
+#    - 'libjenkins-plugin-parent-java'
+  cli_dest: "{{ jenkins_root }}/jenkins-cli.jar" # Jenkins CLI destination
+  updates_dest: "{{ jenkins_root }}/updates_jenkins.json" # Jenkins updates file
+  plugins:
+  - ansicolor
+  - ant
+  - artifactory
+  - backup
+  - build-pipeline-plugin
+  - copy-project-link
+  - copy-to-slave
+  - cvs
+  - description-setter
+  - email-ext
+  - embeddable-build-status
+  - external-monitor-job
+  - git
+  - git-client
+  - github
+  - github-api
+  - greenballs
+  - instant-messaging
+  - ircbot
+  - javadoc
+  - jenkins-jira-issue-updater
+  - jira
+  - ldap
+  - maven-plugin
+  - mysql-auth
+  - next-build-number
+  - pam-auth
+  - parameterized-trigger
+  - phing
+  - rebuild
+  - seleniumhq
+  - skip-certificate-check
+  - ssh-slaves
+  - subversion
+  - svn-release-mgr
+  - svn-tag
+  - translation
+  - viewVC
+  - javadoc
+  - translation
+#dest: '/opt/jenkins'

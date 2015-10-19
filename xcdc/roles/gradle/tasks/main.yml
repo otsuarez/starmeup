@@ -1,0 +1,9 @@
+---
+- name: download package
+  get_url: url=https://services.gradle.org/distributions/gradle-{{ gradle_version }}-bin.zip dest=/var/tmp/gradle-{{ gradle_version }}.zip
+
+- name: install package 
+  command: unzip /var/tmp/gradle-{{ gradle_version }}.zip chdir=/opt creates=/opt/gradle-{{ gradle_version }}
+
+- name: bash profile
+  template: src=gradle_bash_profile.j2 dest=/etc/profile.d/gradle.sh

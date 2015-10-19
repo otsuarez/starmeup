@@ -1,0 +1,16 @@
+[lxcservers]
+dev6-core
+
+
+[jenkins]
+jenkins04
+jenkins-dev
+
+[setup]
+jenkins04-setup
+jenkins-dev-setup
+
+[setup:vars]
+ansible_ssh_pass=ubuntu 
+ansible_sudo_pass=ubuntu 
+ansible_ssh_user=ubuntu

@@ -1,0 +1,19 @@
+---
+component_repository: web-generic
+component_description: web-generic
+component_uri: http://www.github.com/acme-dot-io/web-generic
+
+# artifact
+component_jfrog_server: main_jfrog
+component_input: main_jfrog
+component_input_type: artifact
+component_artifact_filename_prefix: web-generic
+
+component_publish_target: main_apt
+component_deploy_dir: generic
+
+component_artifact_filename_sufix: ".zip"
+component_artifact_filename: "{{ component }}-{{ version }}{{ component_artifact_filename_sufix }}"
+component_input_uri: "web-generic/"
+
+pkg_scripts_setup: true

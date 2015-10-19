@@ -1,0 +1,7 @@
+user: rls
+lxc_clone_container: ubuntu
+env_name: PrivateCloud
+rls_user_name: rls
+rls_ssh_publickey_filename: /home/{{ rls_user_name }}/.ssh/id_rsa.pub
+# private key is setup on the lxc role
+rls_ssh_privatekey_filename: /home/{{ rls_user_name }}/.ssh/id_rsa

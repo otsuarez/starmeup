@@ -1,0 +1,25 @@
+---
+lb_pool_name: 
+  web: app_tpl_dynamic_srvgrp
+
+
+canary:
+  - web1
+  - abl1
+  - sal1
+
+abl:
+  - abl1
+  - abl2
+sal:
+  - sal1
+  - sal2
+
+web:
+  - web1
+  - web2
+  - web3
+
+siteadmin:
+  - siteadmin1
+

@@ -1,0 +1,7 @@
+---
+
+- name: sign certificate
+  command: puppet cert sign {{ inventory_hostname }}
+  sudo: yes
+  delegate_to: localhost
+  tags: setup

@@ -1,0 +1,17 @@
+- name: installing package requirements
+  apt: name={{ item }}
+  with_items:
+  - varnish
+
+- name: create config script
+  template: src=default.vcl.j2 dest=/etc/varnish/default.vcl owner=root group=root mode=0755 backup=yes
+  notify:
+  - restart varnish
+
+- name: create default script 
+  template: src=varnish.j2 dest=/etc/default/varnish owner=root group=root mode=0755 backup=yes
+  notify:
+  - restart varnish
+
+- name: setup  service
+  service: name=varnish state=started

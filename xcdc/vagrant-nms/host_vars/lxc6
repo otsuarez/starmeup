@@ -1,0 +1,4 @@
+containers:
+- { name: 'mem3', ip: '192.168.2.12', ipbe: '172.16.2.12', status: 'auto' }
+- { name: 'static2', ip: '192.168.2.111', ipbe: '172.16.2.111', status: 'auto' }
+- { name: 'abl2', ip: '192.168.2.171', ipbe: '172.16.2.171', status: 'auto' }

@@ -1,0 +1,20 @@
+roles:
+ - infr-common
+ - infr-jenkins
+ - jenkins
+ - sbt
+ - gradle
+ - nodejs
+ - jenkins
+host_services:
+ - memcached
+jenkins_plugins:
+ - envfile
+ - envinject
+ - multiple-scms
+ - build-pipeline-plugin
+ - versionnumber
+acme_server:
+  timezone: Etc/GMT-3
+  timezone_dir: /usr/share/zoneinfo
+  localtime_file: /etc/localtime

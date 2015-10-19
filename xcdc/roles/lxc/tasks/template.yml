@@ -1,0 +1,17 @@
+---
+#lxc_template_cache_dir: /var/cache
+#lxc_template: precise
+#lxc_clone_template: ubuntu
+#lxc_clone_container: ubuntu
+
+- name: template ||  create clone container
+  command: >
+    lxc-create -t {{ lxc_clone_template }} -n  {{ lxc_clone_container }} 
+    creates={{ symlink_lxc_lib_dir.base_libdir }}/{{ symlink_lxc_lib_dir.src_uri }}/{{ lxc_clone_container }} 
+  when: symlink_lxc_lib_dir is defined
+
+- name: template ||  create clone container
+  command: >
+    lxc-create -t {{ lxc_clone_template }} -n  {{ lxc_clone_container }} 
+  when: symlink_lxc_lib_dir is not defined
+

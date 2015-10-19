@@ -1,0 +1,12 @@
+---
+component_name: elvira
+component_description:  RLS Team Tool
+component_uri: http://www.github.com/acme-dot-io/elvira
+
+component_input: github
+component_git_uri: elvira
+component_output: deb
+component_publish_target: main_apt
+component_arch: noarch
+
+component_deploy_dir: 

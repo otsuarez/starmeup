@@ -1,0 +1,17 @@
+[nms]
+infr-macbook8.local
+
+[web]
+web1 
+web2
+web3
+
+[web:vars]
+ansible_connection=local
+
+[all:children]
+web
+
+[all:vars]
+environment_name=LocalDev
+pool_type=static

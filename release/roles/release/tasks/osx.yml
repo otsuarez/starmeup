@@ -1,0 +1,24 @@
+---
+- name: apt | install versioned packages
+  #apt: name={{ item.name }}={{ item.version }} update_cache=no force=yes
+  debug: msg="deploying {{ item.name }}={{ item.version }} "
+  # "
+  with_items: packages
+  sudo: yes
+  when: item.version is defined
+
+- name: apt | install last packages
+  #apt: name={{ item.name }} update_cache=no state=latest
+  debug: msg="deploying {{ item.name }}=latest"
+  #"
+  with_items: packages
+  sudo: yes
+  when: item.version is not defined
+
+- name: apt | get packages version
+  #shell: brew ls --versions  {{ item.name }} | awk '{print $2}'
+  command: echo 1.16
+  with_items: packages
+  changed_when: False
+  register: latest
+

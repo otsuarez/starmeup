@@ -1,0 +1,15 @@
+role_name: packaging
+component_package_name_prefix: acme
+pkg_conffiles_etcdir: /etc
+init_scripts_rootdir: /usr/local/src/git/
+component_git_uri: foo
+packaging:
+  input_vars:
+  - component
+  - version
+
+# hipchat
+pkg_hipchat_color: purple
+pkg_hipchat_token: 00000000000000000000
+pkg_hipchat_room: 00000
+

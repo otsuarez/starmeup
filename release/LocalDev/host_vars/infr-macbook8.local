@@ -1,0 +1,3 @@
+---
+environment_name: LocalDev
+pool_type: static

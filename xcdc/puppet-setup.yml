@@ -1,0 +1,9 @@
+- name: playbook for puppet client setup 
+  hosts: "{{ target }}"
+  #remote_user: ubuntu
+  sudo: yes
+  gather_facts: false
+  roles:
+  - { role: puppet-client, tags: ['setup'] }
+
+# vim:ts=2 sw=2 et autoindent

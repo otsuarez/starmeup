@@ -1,0 +1,28 @@
+---
+
+- name:  download puppet repo package
+  get_url: url=https://apt.puppetlabs.com/puppetlabs-release-precise.deb dest=/var/tmp/puppetlabs-release-precise.deb 
+  tags: setup
+
+- name: install puppet repo
+  apt: deb=/var/tmp/puppetlabs-release-precise.deb
+  register: install
+  tags: setup
+
+- name: update apt
+  apt: update_cache=yes
+  when: install.changed
+  tags: setup
+
+- name: install puppet package
+  apt: name=puppet
+  tags: setup
+
+- name: create conf file
+  template: src=puppet.j2 dest=/etc/puppet/puppet.conf backup=yes
+  tags: setup
+
+- name: create the puppet certificate and send it to the puppet master
+  command: puppet agent --test
+  tags: setup
+  ignore_errors: yes

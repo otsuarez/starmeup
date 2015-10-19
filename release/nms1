@@ -1,0 +1,86 @@
+---
+environment_name: IRIS
+lb_pool_name: 
+  web: app_tpl_dynamic_srvgrp
+#  abl: 
+#  billing: 
+#  cal: 
+#  cron: 
+#  dal: 
+#  mobile-webapp: 
+#  acme-scripts: 
+#  sal: 
+#  shared: 
+#  siteadmin: 
+#  smaug: 
+#  static:
+
+
+canary:
+  - web1
+  - abl1
+  - sal1
+  - smaug1
+
+abl:
+  - abl1
+  - abl2
+sal:
+  - sal1
+  - sal2
+
+#mobile-webapp:
+mobile_webapp:
+  - webapp1
+  - webapp2
+
+smaug:
+  - smaug1
+  - smaug2
+
+web:
+  - web1
+  - web2
+  - web3
+
+cron:
+  - cron1
+
+dal:
+  - dal1
+  - dal2
+
+siteadmin:
+  - siteadmin1
+
+static:
+  - static1
+  - static2
+
+---
+pool_type: dynamic
+dynamic_lb_pool_match:
+  app_tpl_dynamic_srvgrp: web
+  app_tpl_abl_srvgrp: abl
+  app_tpl_cal_srvgrp: cal
+  app_tpl_dal_srvgrp: dal
+  app_tpl_webapp_srvgrp: mobile_webapp
+  app_tpl_sal_srvgrp: sal
+  app_tpl_smaug_srvgrp: smaug
+  app_tpl_static_srvgrp: static
+
+not_used_dynamic_lb_pool_match:
+  web: app_tpl_dynamic_srvgrp
+  abl: app_tpl_abl_srvgrp
+  billing: no va en iris
+  cal: app_tpl_cal_srvgrp
+  dal: app_tpl_dal_srvgrp
+  mobile_webapp: app_tpl_webapp_srvgrp
+  sal: app_tpl_sal_srvgrp
+  smaug: app_tpl_smaug_srvgrp
+  static: app_tpl_static_srvgrp
+# static pools
+  # cron: en este caso en cron1, no tiene un pool
+  # acme-scripts: en este caso en cron1, no tiene un pool
+  # shared: aca ni idea, ya que shared es code, y no es un pool de servers. Ni siquiera se donde de deploya
+  # siteadmin: en este caso es siteadmin1, no tiene pool

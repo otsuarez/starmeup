@@ -1,0 +1,18 @@
+---
+pool_type: dynamic
+dynamic_lb_pool_match:
+  app_tpl_dynamic_srvgrp: web
+  app_tpl_abl_srvgrp: abl
+  app_tpl_cal_srvgrp: cal
+  app_tpl_webapp_srvgrp: mobile_webapp
+  app_tpl_sal_srvgrp: sal
+
+not_used_dynamic_lb_pool_match:
+  web: app_tpl_dynamic_srvgrp
+  abl: app_tpl_abl_srvgrp
+  cal: app_tpl_cal_srvgrp
+  mobile_webapp: app_tpl_webapp_srvgrp
+  sal: app_tpl_sal_srvgrp
+# static pools
+  # acme-scripts: en este caso en cron1, no tiene un pool
+  # siteadmin: en este caso es siteadmin1, no tiene pool

@@ -1,0 +1,9 @@
+[rls-jenkins]
+172.16.1.6  ansible_connection=local 
+
+[deviris1]
+10.1.2.20 ansible_connection=local
+
+[aptly]
+rls-jenkins ansible_connection=local
+deviris1 ansible_connection=local

@@ -1,0 +1,47 @@
+---
+- name: web servers playbook
+  hosts: all
+  gather_facts: false
+  vars:
+    - repo_hostname: jenkins.acme.com
+    - repo_uri: apt
+    - repo_environment: prod
+    - repo_distribution: acme-prod
+    - repo_endpoint: acme
+    - main_jenkins_ip: 192.168.6.2
+    - main_jenkins_hostname: jenkins.acme.com
+    - elvira_ip: 192.168.6.3
+    - elvira_hostname: elvira.acme.com
+  tasks:
+  - name: setting hostname
+    hostname: name={{ inventory_hostname }}
+  #- apt: name=apache2 state=present
+  - name: install packages
+    apt: name={{ item }}
+    with_items:
+     - apache2
+
+  - name: configuring service
+    service: name={{ item }} state=started enabled=yes
+    with_items:
+     - apache2
+
+  - name: add repo key
+    apt_key: url=http://jenkins.acme.com/apt/public.key state=present
+    sudo: yes
+
+
+  - name: add repo file
+    template: src=templates/acme.list.j2 dest=/etc/apt/sources.list.d/acme.list
+    sudo: yes
+
+  - name: update apt db
+    command: apt-get update -o Dir::Etc::sourcelist="sources.list.d/acme.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
+    sudo: yes
+
+  - name: set host records
+    lineinfile: dest=/etc/hosts  line="{{ main_jenkins_ip }} {{ main_jenkins_hostname }}"
+    sudo: yes
+  - name: set host records
+    lineinfile: dest=/etc/hosts  line="{{ elvira_ip }} {{ elvira_hostname }}"
+    sudo: yes

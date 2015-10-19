@@ -1,0 +1,13 @@
+---
+component_name: siteadmin-conf
+component_description: Siteadmin
+component_uri: http://www.github.com/acme-dot-io/siteadmin-conf
+component_publish_target: main_apt
+
+component_input: github
+component_git_uri: siteadmin-conf
+component_output: deb
+component_arch: noarch
+component_component: siteadmin
+component_category: siteadmin
+component_deploy_dir: 

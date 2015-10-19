@@ -1,0 +1,4 @@
+containers:
+- { name: 'mem1', ip: '192.168.2.10', ipbe: '172.16.2.10', status: 'auto' }
+- { name: 'mobile-webapp1', ip: '192.168.2.40', ipbe: '172.16.2.40', status: 'auto' }
+- { name: 'queue1', ip: '192.168.2.100', ipbe: '172.16.2.100', status: 'auto' }

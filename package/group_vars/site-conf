@@ -1,0 +1,18 @@
+---
+component_name: site-conf
+component_description: site-conf
+component_uri: http://www.github.com/acme-dot-io/site-conf
+component_publish_target: main_apt
+
+# jfrog
+#component_jfrog_uri: abl
+
+component_input: github
+component_git_uri: site-conf
+component_output: deb
+component_arch: noarch
+component_component: site
+component_category: site
+component_deploy_dir: 
+
+

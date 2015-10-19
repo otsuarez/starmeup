@@ -1,0 +1,29 @@
+---
+- name: check lxc base dir status
+  stat: path="{{ symlink_lxc_lib_dir.base_libdir }}/{{ symlink_lxc_lib_dir.src_uri }}"
+  register: lxcvardir
+  #"
+
+- name: storing lxc base dir status
+  set_fact: lxc_lib_dir_status="{{ lxcvardir }}"
+  #"
+
+- name: directories | check mount dir status
+  stat: path="{{ symlink_lxc_lib_dir.mount_libdir }}/{{ symlink_lxc_lib_dir.src_uri }}"
+  #"
+  register: lxcmountdir
+
+- name: directories | create mount dir
+  file: path={{ symlink_lxc_lib_dir.mount_libdir }}/{{ symlink_lxc_lib_dir.src_uri }} state=directory mode={{ lxc_chmod }} owner={{ lxc_user }} group={{ lxc_group }} 
+  when: not lxcmountdir.stat.exists
+  #"#
+
+- name: directories | create auto lxc dir
+  file: path={{ lxc_etc_auto_dir }} state=directory mode=0755 owner=root group=root
+
+- name: directories | rename original lib dir
+  command: "mv  {{ symlink_lxc_lib_dir.base_libdir }}/{{ symlink_lxc_lib_dir.src_uri }} {{ symlink_lxc_lib_dir.base_libdir }}/{{ symlink_lxc_lib_dir.src_uri }}-orig creates={{ symlink_lxc_lib_dir.base_libdir }}/{{ symlink_lxc_lib_dir.src_uri }}-orig"
+
+- name: directories | create symlink
+  file: "src={{ symlink_lxc_lib_dir.mount_libdir }}/{{ symlink_lxc_lib_dir.src_uri }} dest={{ symlink_lxc_lib_dir.base_libdir }}/{{ symlink_lxc_lib_dir.src_uri }}  state=link"
+  when: not lxcvardir.stat.exists

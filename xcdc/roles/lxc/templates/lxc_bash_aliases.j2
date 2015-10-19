@@ -1,0 +1,5 @@
+# alias connect-myacme='ssh rls@10.1.2.87'
+{% for item in containers %}
+alias connect-{{ item.name}}='ssh rls@{{ item.interfaces[0].ipv4 }}'
+{% endfor %}
+

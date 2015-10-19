@@ -1,0 +1,26 @@
+---
+- name: svn - Check if version has already been downloaded
+  stat: path={{ svn_dir }}/{{ component_svn_uri }}/{{ version }}
+  register: check_path
+
+# checkout the repository
+
+- name: svn - creating component svn repository directory if required
+  file: path={{ svn_dir }}/{{ component_svn_uri }} state=directory owner={{ deploy_user }} recurse=yes
+  sudo: yes
+  when: check_path.stat.exists == false
+
+- name: svn clone the repository
+  subversion: >
+    repo={{ input_url }}/{{ component_input_uri }}/{{ version }}
+    dest={{ svn_dir }}/{{ component_svn_uri }}/{{ version }}
+    username={{ input_svn_username }}
+    password={{ input_svn_password }}
+  when: check_path.stat.exists == false
+  no_log: True
+
+- name: create deployment dir
+  file: path={{ pkg_tmp_dir }}/{{ component }}/src/{{ base_prefix }}/{{ component_deploy_dir }}/ state=directory owner={{ deploy_user }} recurse=yes
+
+- name: command rsync
+  command: rsync -r  --inplace --exclude "/.svn/*" --exclude ".svn*"  {{ svn_dir }}/{{ component_svn_uri }}/{{ version }}/ {{ pkg_tmp_dir }}/{{ component }}/src/{{ base_prefix }}/{{ component_deploy_dir }}/

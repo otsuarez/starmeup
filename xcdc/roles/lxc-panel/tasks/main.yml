@@ -1,0 +1,24 @@
+- name: installing package requirements
+  apt: name={{ item }}
+  with_items:
+  - python
+  - python-pip
+  - git
+
+- name: installing flask
+  pip:  name=flask version=0.9
+
+- name: checking out lxc-panel repository
+  git: repo=https://github.com/lxc-webpanel/LXC-Web-Panel.git dest={{ install_dir }}
+
+- name: create init script for lwp
+  template: src=lwp.j2 dest=/etc/init.d/lwp owner=root group=root mode=0755 force=no
+
+- name: add lwp service
+  command: update-rc.d lwp defaults
+
+- name: start lwp service
+  command: /etc/init.d/lwp start
+
+- name: setup lwp service
+  service: name=lwp state=started

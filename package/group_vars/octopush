@@ -1,0 +1,25 @@
+---
+component_repository: rls
+component_name: octopush
+component_description: This is Octopush aka The Hulk
+component_uri: http://www.github.com/acme-dot-io/octopush
+
+component_artifact_is_singlefile: false
+
+# jfrog
+#component_jfrog_uri: octopush
+
+component_input: main_jfrog
+component_input_type: artifact
+component_input_uri: octopush
+
+
+component_output: deb
+component_publish_target: local_apt
+component_arch: noarch
+component_component: rls
+component_category: rls
+component_deploy_dir: octopush.acme.com
+#component_package_name_prefix: acme-octopush
+
+

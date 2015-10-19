@@ -1,0 +1,11 @@
+---
+rls_user_group: admin
+rls_user_name: rls
+rls_user_comment: RLS TEAM user
+rls_user_shell: /bin/bash
+rls_user_uid: 1040
+# public key is setup on the infr-rls role
+rls_ssh_publickey_filename: /home/rls/.ssh/id_rsa.pub
+# private key is setup on the lxc role
+rls_ssh_privatekey_filename: /home/rls/.ssh/id_rsa
+

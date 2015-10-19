@@ -1,0 +1,25 @@
+---
+component_repository: shared
+component_name: shared
+component_description: shared
+component_uri: http://www.github.com/acme-dot-io/shared
+
+component_input: svn
+# branch master is found in staging-repos2
+component_svn_uri: shared
+component_input_uri: shared/tags
+component_publish_target: main_apt
+component_deploy_dir: shared
+
+
+component_input_url: https://svn.acme.com/repos/
+component_uri: https://svn.acme.com/repos/shared
+component_package_excluded_extensions:
+  - config/mobile_email_templates.php
+  - config/env.php
+  - config/db.php
+  - config/config_syslog
+  - config/tracking.php
+  - config/schedule_crms.php
+  - config/mobile_push_notifications.php
+  - config/featuredlistings.php

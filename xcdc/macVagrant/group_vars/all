@@ -1,0 +1,6 @@
+user: vagrant
+lxc_clone_container: ubuntu
+env_name: macVagrant
+
+# maintenance tasks
+auto_removal: True

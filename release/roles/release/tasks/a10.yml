@@ -1,0 +1,58 @@
+---
+- name: a10 | disabling server
+  #debug: msg="disabling server {{ inventory_hostname }}"
+  command: a10cmd.py disable {{ lb_pool_name }} {{ inventory_hostname }}
+  delegate_to: nms
+  tags: ['canary','rollback']
+
+- name: a10 | wait for connections to end
+  command: sleep {{ component_lb_timeout }}
+  tags: ['canary','rollback']
+
+- name: a10 | install packages
+  #debug: msg="installing in {{ ansible_os_family }}"
+  include: apt.yml
+  when: ansible_os_family == 'Debian' 
+  tags: ['canary','rollback']
+
+- name: a10 | enabling server
+  command: a10cmd.py enable {{ lb_pool_name }} {{ inventory_hostname }}
+  delegate_to: nms
+  tags: 
+    - canary
+    - rollback
+
+- name: a10 | get active servers in lb
+  command: a10cmd.py active {{ lb_pool_name }}
+  delegate_to: nms
+  register: active_servers
+  when: lb_type == 'a10'
+  changed_when: False
+  tags: ['canary']
+
+- name: a10 | local rollback if required
+  apt: name={{ item.item.name }}={{ item.stdout }}
+  #debug: msg="rollback package {{ item.item.name }} version {{ item.item.version }} to version {{ item.stdout }}"
+  with_items: pre_pkg_vers.results
+  when: item.item.version is defined and item.item.version != item.stdout and inventory_hostname not in active_servers.stdout
+  tags: ['canary']
+
+- name: a10 | enabling server after local rollback if required
+  command: a10cmd.py enable {{ lb_pool_name }} {{ inventory_hostname }}
+  delegate_to: nms
+  when: item.item.version is defined and item.item.version != item.stdout and inventory_hostname not in active_servers.stdout
+  tags: ['canary']
+
+- name: a10 | get packages version
+  shell: dpkg -l | grep  {{ item.name }} | awk '{print $3}'
+  with_items: packages
+  changed_when: False
+  register: dpkg_output
+  tags: ['rollback','canary']
+
+- name: a10 | report installed versions
+  debug: msg='{{ environment_name }} {{ inventory_hostname }} {{ item.item.name }} {{ item.stdout }}'
+  #'
+  with_items: dpkg_output.results
+
+#- name: a10 | enable alerts from nagios

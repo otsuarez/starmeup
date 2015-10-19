@@ -1,0 +1,52 @@
+Host dev6-core-server
+        Hostname 172.16.0.37
+        IdentityFile ~/.ssh/keys/id_acme-dc-privatecloud_rls_rsa
+
+Host jenkins04-setup
+  User ubuntu
+  Hostname 10.1.2.187
+  ServerAliveInterval 300
+  ServerAliveCountMax 60
+  StrictHostKeyChecking no
+  ProxyCommand ssh dev6-core-server nc %h %p -w 10 2> /dev/null
+
+Host apple-jenkins-smaug-setup
+  User ubuntu
+  Hostname 10.1.2.188
+  ServerAliveInterval 300
+  ServerAliveCountMax 60
+  StrictHostKeyChecking no
+  ProxyCommand ssh dev6-core-server nc %h %p -w 10 2> /dev/null
+
+Host dev6-core
+  Hostname 172.16.0.37
+  ServerAliveInterval 15
+  #ServerAliveInterval 300
+  ServerAliveCountMax 600
+  #Hostname 166.78.73.45
+  IdentityFile ~/.ssh/keys/id_acme-dc-privatecloud_rls_rsa
+  TCPKeepAlive no
+
+Host jenkins04
+  Hostname 10.1.2.187
+  ServerAliveInterval 300
+  ServerAliveCountMax 60
+  StrictHostKeyChecking no
+  ProxyCommand ssh dev6-core nc %h %p -w 10 2> /dev/null
+
+Host saraza
+  #User ubuntu
+  Hostname 10.1.2.188
+  ServerAliveInterval 300
+  ServerAliveCountMax 60
+  StrictHostKeyChecking no
+  ProxyCommand ssh dev6-core-server nc %h %p -w 10 2> /dev/null
+
+Host jenkins-smaug*
+  Hostname 10.1.2.188
+  #ServerAliveInterval 15
+  ServerAliveInterval 6
+  #ServerAliveCountMax 36
+  StrictHostKeyChecking no
+  TCPKeepAlive no
+  ProxyCommand ssh dev6-core-server nc %h %p -w 10 2> /dev/null

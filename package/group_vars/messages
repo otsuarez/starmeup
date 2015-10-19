@@ -1,0 +1,31 @@
+---
+debug_mode_on: true
+component_repository: translations
+component_name: messages
+component_description: Translation Messages
+component_uri: http://www.github.com/acme-dot-io/translations
+component_git_uri: translations
+
+# artifact
+component_input: github
+component_input_type: github
+
+component_publish_target: main_apt
+#component_package_name_prefix: acme-abl
+
+
+
+pkg_conffiles_setup: true
+component_straight_to_prod: true
+
+
+component_notification_irc_room: release
+
+component_deploy_dir: 
+
+component_output: deb
+component_package_publish:
+  branch:
+    master:
+      aptly:
+        - { "repo" : "prod", "distribution": "acme-prod", "endpoint" : "prod" }

@@ -1,0 +1,67 @@
+---
+_meta:
+  hostvars:
+    abl1:
+      lb_server: lb1
+      pool_type: static
+      environment_name: IRIS
+    abl2:
+      lb_server: lb1
+      pool_type: static
+      environment_name: IRIS
+    sal1:
+      lb_server: lb1
+      pool_type: static
+      environment_name: IRIS
+    sal2:
+      lb_server: lb1
+      pool_type: static
+      environment_name: IRIS
+    web1:
+      lb_server: lb1
+      pool_type: static
+      environment_name: IRIS
+    web2:
+      lb_server: lb1
+      pool_type: static
+      environment_name: IRIS
+    web3:
+      lb_server: lb1
+      pool_type: static
+      environment_name: IRIS
+    vagrant-nms:
+      lb_server: lb1
+      pool_type: static
+      environment_name: IRIS
+
+all:
+  canary:
+    - web1
+    - abl1
+    - sal1
+
+abl:
+  hosts:
+    - abl1
+    - abl2
+sal:
+  hosts:
+    - sal1
+    - sal2
+
+web:
+  hosts:
+    - web1
+    - web2
+    - web3
+
+nms:
+  hosts:
+    - nms1
+
+dynamic_lb_credentials_filename: /usr/local/bin/secrets
+dynamic_lb_pool_match:
+  www: app_tpl_dynamic_srvgrp
+  abl: app_tpl_abl_srvgrp
+  cal: app_tpl_cal_srvgrp
+  sal: app_tpl_sal_srvgrp

@@ -1,0 +1,44 @@
+---
+
+- name: deb -  no package scripts
+  set_fact: fpm_script_opts=" "
+  #"
+  when: not pkg_scripts_setup
+
+- name: deb -  yes package scripts
+  set_fact: fpm_scripts_opts="{{ pkg_script_opts }}"
+  #"
+  when: pkg_scripts_setup
+
+- set_fact: yaml_branch={{ branch | regex_replace('-','_') }}
+#- debug: var=component_package_publish.branch.{{ yaml_branch }}
+
+- name: deb - removing excluded extensions
+  shell: "find . -regex '.*{{ item }}' -delete  chdir={{ pkg_tmp_dir }}/{{ component }}"
+  with_items:  component_package_excluded_extensions
+  when: component_package_excluded_extensions
+
+- name: deb -  creating package with fpm 
+  command: 'fpm -t deb -s {{ pkg_input_type }} --name {{ component_package_name_prefix }}-{{ component_package_name }} --version {{ version }} --iteration {{ branch }}-{{ sha }}-{{ iter }} --architecture {{ component_arch }}  --maintainer "{{ pkg_maintainer }}" --description "{{ component_description }}" --url {{ component_uri }} --vendor {{ pkg_vendor }} --license "{{ pkg_license }}" {{ pkg.deb.user }} {{ pkg.deb.group }} {{ fpm_scripts_opts }} -C src/ . chdir={{ pkg_tmp_dir }}/{{ component }} '
+  register: out
+
+- name: deb -  get package name
+  set_fact: pkgfile={{ out.stdout_lines[0] | regex_replace('.*path=>"(.*\.deb).*$', '\\1') }}
+#"
+- debug: var=pkgfile
+- hipchat_v2: msg="new package created {{ pkgfile }}" color="{{ pkg_hipchat_color }}" room="{{ pkg_hipchat_room }}" token="{{ pkg_hipchat_token }}"
+
+# main apt repository (aptly)
+- name: deb -  adding package to repository
+  command: aptly repo add {{ item.repo }} {{ pkg_tmp_dir }}/{{ component }}/{{ pkgfile }}
+  with_items: "component_package_publish.branch.{{ yaml_branch }}.aptly"
+  when: "'main_apt' in component_publish_target"
+
+- name: deb -  update repository
+  command: "aptly publish update  {{ item.distribution }}  {{ item.endpoint }}"
+  with_items: "component_package_publish.branch.{{ yaml_branch }}.aptly"
+  when: "'main_apt' in component_publish_target"
+
+- name: deb -  notify
+  local_action: command curl -s -X POST -d "msg=new deb package available {{ pkgfile }} " elvira.acme.com/api/irc/{{ component_notification_irc_room }}
+

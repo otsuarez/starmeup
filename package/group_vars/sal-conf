@@ -1,0 +1,12 @@
+component_name: sal-conf
+component_description: Solr Abstraction Layer 
+component_uri: http://www.github.com/acme-dot-io/sal-conf
+
+component_input: github
+component_git_uri: sal-conf
+component_output: deb
+component_arch: noarch
+component_component: sal
+component_category: sal
+component_deploy_dir:
+component_publish_target: main_apt

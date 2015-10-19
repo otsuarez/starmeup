@@ -1,0 +1,14 @@
+component_output: deb
+
+pkg:
+  rpm:
+    base_prefix : /home/httpd/sites/siteadmin.acme.com
+    user: "--rpm-user httpd"
+    group: "--deb-group httpd"
+  deb:
+    base_prefix : /var/www/sites/siteadmin.acme.com
+    user: "--deb-user www-data"
+    group: "--deb-group www-data"
+
+# deploy playbook
+pool_name: siteadmin

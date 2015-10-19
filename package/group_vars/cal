@@ -1,0 +1,30 @@
+---
+debug_mode_on: true
+component_repository: cal
+component_name: sal
+component_description: cal
+component_uri: http://www.github.com/acme-dot-io/cal
+
+# jfrog
+#component_jfrog_uri: abl
+
+# artifact
+component_jfrog_server: main_jfrog
+component_input: main_jfrog
+component_input_type: artifact
+component_artifact_is_singlefile: true
+component_artifact_filename_prefix: CAL
+
+component_arch: x86_64
+
+component_publish_target: main_apt
+component_deploy_dir: bin
+
+
+component_artifact_filename_sufix: "jar-with-dependencies.jar"
+component_artifact_filename: "{{ component_artifact_filename_prefix }}-{{ version }}-{{ component_artifact_filename_sufix }}"
+component_input_uri: "sas/com/acme/CAL/{{ version }}"
+
+
+pkg_conffiles_setup: true
+component_straight_to_prod: true

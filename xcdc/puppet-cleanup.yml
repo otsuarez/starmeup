@@ -1,0 +1,11 @@
+---
+
+- name: playbook for puppet client post install tasks 
+  hosts: "{{ target }}"
+  remote_user: sysadmin
+  sudo: yes
+  gather_facts: false
+  roles:
+  - { role: puppet-client, tags: ['cleanup'] }
+
+# vim:ts=2 sw=2 et autoindent

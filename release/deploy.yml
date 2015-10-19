@@ -1,0 +1,76 @@
+---
+# deploy.yml
+# blindly deploy packages with no regards for anything else, yeah, we'll fix it later, sry, refactor it. we're agile!! yey!!!
+
+- name: define server pool
+  hosts: nms
+  gather_facts: false
+  tasks:
+  - name: get component from common package name
+    set_fact: pool_name_var={{ packages[0].name |  regex_replace('-', '_') |  regex_replace('^acme_', '')  | regex_replace('(.*?)\_.*$', '\\1') }}
+  - name: get component from package name
+    set_fact: pkg_name_var={{ packages[0].name |  regex_replace('^acme-', '')  }}
+#set_fact: pool_name_var={{ packages[0].name |  regex_replace('-', '_') |  regex_replace('^acme_', '')  | regex_replace('^(.*)_.*$', '\\1')  }}
+
+  - name: include component variables from common
+    include_vars: "inventory/group_vars/common-{{  pool_name_var }}"
+
+  - name: include component variables
+    include_vars: "inventory/group_vars/{{  pkg_name_var }}"
+
+  - name: sanitize pool name
+    set_fact: pool_name={{ pool_name |  regex_replace('-', '_')  }}
+
+  #- debug: var="{{ pool_name }}"
+  #- debug: var=mobile_webapp
+  - name: create pool all from lb
+    add_host: hostname={{ item }} groups=pool_deploy
+    with_items: "{{ pool_name }}"
+
+ #####   ######  #####   #        ####    #   #
+ #    #  #       #    #  #       #    #    # #
+ #    #  #####   #    #  #       #    #     #
+ #    #  #       #####   #       #    #     #
+ #    #  #       #       #       #    #     #
+ #####   ######  #       ######   ####      #
+
+
+# deploy
+- hosts: pool_deploy
+  gather_facts: false
+  serial: 1
+  pre_tasks:
+  - name: update repo
+    command: apt-get update -o Dir::Etc::sourcelist="sources.list.d/{{ item }}.list" -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
+    sudo: yes
+    with_items:
+      - "Jenkins-Native-Packages" 
+      - "Jenkins-Native-Packages-conf"
+
+  tasks:
+  - name: install versioned packages
+    apt: name={{ item.name }}={{ item.version }} update_cache=no force=yes
+    with_items: packages
+    sudo: yes
+    when: item.version is defined
+
+  - name: install last packages
+    apt: name={{ item.name }} update_cache=no state=latest
+    with_items: packages
+    sudo: yes
+    when: item.version is not defined
+
+
+  - name: get installed packages version
+    shell: dpkg -s {{ item.name }} | grep Version  | awk '{print $2}'
+    with_items: packages
+    changed_when: False
+    register: installed_pkg_vers
+
+  - hipchat_v2: msg="{{ environment_name }} {{ inventory_hostname }} {{ item.item.name }} {{ item.stdout }}"  color="{{ pkg_hipchat_color }}" room="{{ pkg_hipchat_room }}" token="{{ pkg_hipchat_token }}"
+    #"
+    changed_when: False
+    with_items: installed_pkg_vers.results
+  - debug: msg="{{ environment_name }} {{ inventory_hostname }} {{ item.item.name }} {{ item.stdout}}"
+    #"
+    with_items: installed_pkg_vers.results
