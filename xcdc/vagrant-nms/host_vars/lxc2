@@ -1,3 +1,0 @@
-containers:
-  - { name: 'web2', ip: '192.168.20.2', ipbe: '172.16.20.2', status: 'auto' }
-  - { name: 'smaug1', ip: '192.168.20.30', ipbe: '172.16.20.30', status: 'auto' }

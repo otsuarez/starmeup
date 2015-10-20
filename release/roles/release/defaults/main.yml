@@ -1,9 +1,0 @@
-# hipchat
-pkg_hipchat_color: purple
-pkg_hipchat_token: 0000000000000000000000000000000000000000
-pkg_hipchat_room: 000000
-# component customizable
-# wait for up to <async> sec, poll every <poll> sec
-component_lb_enable_timeout_async: 3
-component_lb_enable_timeout_poll: 2
-component_lb_timeout: 5

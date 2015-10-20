@@ -1,5 +1,0 @@
----
-acme_server:
-  timezone: Etc/GMT-3
-  timezone_dir: /usr/share/zoneinfo
-  localtime_file: /etc/localtime

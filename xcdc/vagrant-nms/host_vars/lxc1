@@ -1,6 +1,0 @@
-containers_old: 
-  - { name: 'web1', ip: '192.168.20.1', ipbe: '172.16.20.1', status: 'started' } 
-containers: 
-  - { name: 'web1', status: 'started', interfaces: [{ 'type': 'veth', 'flags':'up','link':'br0','name':'eth0','ipv4.gateway':'192.168.1.1','ipv4':'192.168.2.15/22'},{ 'type': 'veth', 'flags':'up','link':'br2','name':'eth2','ipv4':'172.16.2.15/22'}] } 
-agregar_este_al_nuevo_formato:
-  - { name: 'siteadmin1', ip: '192.168.20.80', ipbe: '172.16.20.80', status: 'auto' }

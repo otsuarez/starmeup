@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+        <title>About - Doc</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../css/prettify-1.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="..">Doc</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">startmeup <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../startmeup/workflow">workflow</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">release <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../release/readme">readme</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../release/alfa">alfa</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../release/make-deploy-stdout">deploy stdout</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">aptly <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../aptly/workflow">workflow</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../aptly/commands">commands</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../aptly/setup">setup</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../aptly/gpg-keys">GPG Keys</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">howto <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../howto/vagrant-lxc">vagrant-lxc</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../howto/vagrant-hostmanager">hostmanager</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../howto/apidocs">api doc</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="active">
+                    <a href=".">About</a>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li >
+                    <a rel="next" href="../howto/apidocs">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li class="disabled">
+                    <a rel="prev" >
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#about">About</a></li>
+        
+    
+        <li class="main "><a href="#setup">setup</a></li>
+        
+            <li><a href="#pre-requirements">pre requirements</a></li>
+        
+            <li><a href="#commands">commands</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="about">About</h1>
+<p>This site was created using <a href="https://help.github.com/articles/creating-project-pages-manually/">Github Pages</a> and <a href="../www.mkdocs.org">mkdocs</a></p>
+<h1 id="setup">setup</h1>
+<h2 id="pre-requirements">pre requirements</h2>
+<pre class="prettyprint well"><code>sudo pip install mkdocs
+</code></pre>
+
+<h2 id="commands">commands</h2>
+<pre class="prettyprint well"><code>git checkout --orphan doc
+git rm -fr .
+mkdocs new .
+cat &lt;&lt;_EOF_ &gt; mkdocs.yml
+site_name: Doc
+pages:
+- [index.md, Home]
+- [about.md, About]
+theme: united
+_EOF_
+mkdir docs
+cat &lt;&lt;_EOF_ &gt; docs/index.md
+# Documentation
+_EOF_
+cat &lt;&lt;_EOF_ &gt; docs/about.md
+# About
+_EOF_
+mkdocs build
+git add .
+git commit -am&quot;doc repo update&quot;
+git push -u origin doc
+
+git checkout --orphan gh-pages
+git rm -rf .
+git checkout doc:site/ .
+git add .
+git commit -am&quot;doc site update&quot;
+git push -u origin gh-pages
+git checkout master
+</code></pre>
+
+</div>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/prettify-1.0.min.js"></script>
+        <script src="../js/base.js"></script>
+    </body>
+</html>

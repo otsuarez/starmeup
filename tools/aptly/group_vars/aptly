@@ -1,5 +1,0 @@
-#Take default values
-site_name: aptly
-site_dir: aptly
-aptly_pkg:
- repo: 'deb http://repo.aptly.info/ squeeze main' 

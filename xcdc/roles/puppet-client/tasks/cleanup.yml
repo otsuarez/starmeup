@@ -1,6 +1,0 @@
----
-- name: delete ubuntu user account
-  user: name={{ item }} state=absent remove=yes
-  with_items:
-    - ubuntu
-  tags: cleanup

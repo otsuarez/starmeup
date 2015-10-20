@@ -1,5 +1,0 @@
-containers:
-  - { name: 'lucene2-iris.dc-iris.acme.ir', status: 'started', interfaces: [{ 'flags':'up','link':'br0','name':'eth0','ipv4.gateway':'192.168.1.1','ipv4':'192.168.2.21/22'},{ 'flags':'up','link':'br2','name':'eth2','ipv4':'172.16.2.21/22'}] }
-  - { name: 'mail2.dc-iris.acme.ir', status: 'started', interfaces: [{ 'flags':'up','link':'br0','name':'eth0','ipv4.gateway':'192.168.1.1','ipv4':'192.168.2.71/22'},{ 'flags':'up','link':'br2','name':'eth2','ipv4':'172.16.2.71/22'}] }
-  - { name: 'monit1.dc-iris.acme.ir', status: 'started', interfaces: [{ 'flags':'up','link':'br0','name':'eth0','ipv4.gateway':'192.168.1.1','ipv4':'192.168.2.230/22'},{ 'flags':'up','link':'br2','name':'eth2','ipv4':'172.16.2.230/22'}] }
-  - { name: 'ocl1.dc-iris.acme.ir', status: 'started', interfaces: [{ 'flags':'up','link':'br0','name':'eth0','ipv4.gateway':'192.168.1.1','ipv4':'192.168.2.180/22'},{ 'flags':'up','link':'br2','name':'eth2','ipv4':'172.16.2.180/22'}] }

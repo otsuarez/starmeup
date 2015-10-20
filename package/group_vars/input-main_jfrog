@@ -1,5 +1,0 @@
----
-jfrog_admin_user: admin
-jfrog_admin_password: secret
-jfrog_url: jfrog.acme.com/artifactory/simple
-input_type: artifact

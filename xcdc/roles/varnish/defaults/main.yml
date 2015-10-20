@@ -1,8 +1,0 @@
-backends:
-  - { name: 'default', host: '127.0.0.1', port: '8080' }
-
-http_hosts:
-  - {url: 'localhost', backend: 'default'}
-
-varnish_tcp_port: 6081
-varnish_admin_tcp_port: 6082

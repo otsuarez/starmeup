@@ -1,9 +1,0 @@
----
-
-- name: setup ssh private key key
-  copy: dest=/home/{{ rls_user_name }}/.ssh/id_rsa content="{{ lookup('file', rls_ssh_privatekey_filename) }}" owner={{ rls_user_name }} group={{ rls_user_name }} mode=0600
-  #"
-  when: rls_user_name is defined
-
-- name: set container networking config file
-  template: src=lxc_bash_aliases.j2 dest=/home/{{ rls_user_name }}/.bash_aliases backup=yes owner={{ rls_user_name }} group={{ rls_user_name }}

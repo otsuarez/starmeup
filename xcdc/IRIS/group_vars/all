@@ -1,5 +1,0 @@
-user: sysadmin
-puppetmaster_hostname: puppet.dc-iris.acme.ir
-lxc_clone_container: base
-env_name: IRIS
-lxc_clone_template: base

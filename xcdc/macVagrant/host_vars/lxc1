@@ -1,5 +1,0 @@
-containers:
-  - { name: 'server01', status: 'started', interfaces: [{ 'flags':'up', 'link':'lxcbr0','name':'eth0','ipv4':'10.1.2.6'}] }
-  - { name: 'server02', status: 'started', interfaces: [{ 'flags':'up', 'link':'lxcbr0','name':'eth0','ipv4':'10.1.2.7'}] }
-containers_trash:
-  - { name: 'siteadmin1'}

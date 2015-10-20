@@ -1,3 +1,0 @@
-# ACMEs
-deb http://apt.acme.com/ubuntu precise main
-deb-src http://apt.acme.com/ubuntu precise main

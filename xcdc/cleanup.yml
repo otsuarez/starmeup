@@ -1,9 +1,0 @@
-- name: lxc guest post-create setup
-  hosts: all
-  #hosts: "{{ target }}"
-  sudo: yes
-  gather_facts: false
-  roles:
-  - infr-cleanup
-
-# vim:ts=2 sw=2 et autoindent

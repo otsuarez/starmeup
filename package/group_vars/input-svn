@@ -1,5 +1,0 @@
----
-input_url: https://svn.acme.com/repos
-input_type: svn
-input_svn_username: release
-input_svn_password: secret

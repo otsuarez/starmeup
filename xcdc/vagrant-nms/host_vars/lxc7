@@ -1,3 +1,0 @@
-containers:
-- { name: 'mail1', ip: '192.168.2.70', ipbe: '172.16.2.70', status: 'auto' }
-- { name: 'lb1', ip: '192.168.2.180', ipbe: '172.16.2.180', status: 'auto' }

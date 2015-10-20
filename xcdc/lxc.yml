@@ -1,9 +1,0 @@
-- hosts: lxcservers
-  sudo: yes
-  user: "{{ user }}"
-  gather_facts: false
-
-  roles:
-  #- { role: lxc, tags: ['install']  }
-  - { role: lxc, tags: ['lxcssh']  }
-  #- { role: lxc, tags: ['lxc']  }

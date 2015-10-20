@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+        <title>hostmanager - Doc</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/prettify-1.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Doc</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">startmeup <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../startmeup/workflow">workflow</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">release <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../release/readme">readme</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../release/alfa">alfa</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../release/make-deploy-stdout">deploy stdout</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">aptly <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../aptly/workflow">workflow</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../aptly/commands">commands</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../aptly/setup">setup</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../aptly/gpg-keys">GPG Keys</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">howto <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../vagrant-lxc">vagrant-lxc</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href=".">hostmanager</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../apidocs">api doc</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../../about">About</a>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li >
+                    <a rel="next" href="../vagrant-lxc">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../apidocs">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#install">install</a></li>
+        
+    
+        <li class="main "><a href="#issues">issues</a></li>
+        
+            <li><a href="#solution">solution</a></li>
+        
+    
+        <li class="main "><a href="#working">working</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<p>A Vagrant plugin that manages the /etc/hosts file on guests within a multi-machine environment</p>
+<h1 id="install">install</h1>
+<p>install the plugin <a href="https://github.com/smdahlen/vagrant-hostmanager">vagrant-hostmaster</a></p>
+<pre class="prettyprint well"><code>vagrant plugin install vagrant-hostmanager
+</code></pre>
+
+<pre class="prettyprint well"><code>$ vagrant plugin install vagrant-hostmanager
+Installing the 'vagrant-hostmanager' plugin. This can take a few minutes...
+Installed the plugin 'vagrant-hostmanager (1.5.0)'!
+$
+</code></pre>
+
+<h1 id="issues">issues</h1>
+<p>https://developerkarma.com/2014/03/19/vagrant-tricks.html</p>
+<pre class="prettyprint well"><code>There was an error executing [&quot;sudo&quot;, &quot;/usr/local/bin/vagrant-lxc-wrapper&quot;, &quot;lxc-create&quot;, &quot;--version&quot;]
+
+For more information on the failure, enable detailed logging by setting
+the environment variable VAGRANT_LOG to DEBUG.
+</code></pre>
+
+<h2 id="solution">solution</h2>
+<p>It is a known issue with the vagrant-lxc plugin and a solution is proposed on the <a href="https://github.com/fgrehm/vagrant-lxc/blob/master/CHANGELOG.md">CHANGELOG file</a>.</p>
+<pre class="prettyprint well"><code>Remove plugin version from config file name generated by the vagrant lxc sudoers command. Manual removal of /usr/local/bin/vagrant-lxc-wrapper-* / /etc/sudoers.d/vagrant-lxc-* files are required.
+</code></pre>
+
+<p>Remove the <code>vagrant-lxc-wrapper</code> command (just renaming it will work).</p>
+<pre class="prettyprint well"><code>sudo mv /usr/local/bin/vagrant-lxc-wrapper /usr/local/bin/vagrant-lxc-wrapper.disabled
+</code></pre>
+
+<h1 id="working">working</h1>
+<p>A <code>vagrant up</code> is required for the plugin to work.</p>
+<p>When the vm boots up, you will notice the following messages on the boot messages</p>
+<pre class="prettyprint well"><code>==&gt; lb: Machine booted and ready!
+==&gt; lb: Setting hostname...
+==&gt; lb: Updating /etc/hosts file on active guest machines...
+==&gt; lb: Updating /etc/hosts file on host machine (password may be required)...
+
+</code></pre>
+
+<p>The <code>/etc/hosts</code> file on each vm will be updated accordingly.</p>
+<pre class="prettyprint well"><code>## vagrant-hostmanager-start
+10.1.2.202  vagrant-nms
+10.1.2.26 lb
+## vagrant-hostmanager-end
+
+</code></pre>
+
+</div>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
+        <script src="../../js/base.js"></script>
+    </body>
+</html>

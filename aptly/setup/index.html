@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+
+        <title>setup - Doc</title>
+
+        <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link href="../../css/prettify-1.0.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="../..">Doc</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">startmeup <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../startmeup/workflow">workflow</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">release <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../release/readme">readme</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../release/alfa">alfa</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../release/make-deploy-stdout">deploy stdout</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">aptly <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../workflow">workflow</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../commands">commands</a>
+                        </li>
+                    
+                        <li class="active">
+                            <a href=".">setup</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../gpg-keys">GPG Keys</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">howto <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        <li >
+                            <a href="../../howto/vagrant-lxc">vagrant-lxc</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../howto/vagrant-hostmanager">hostmanager</a>
+                        </li>
+                    
+                        <li >
+                            <a href="../../howto/apidocs">api doc</a>
+                        </li>
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../../about">About</a>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li >
+                    <a rel="next" href="../commands">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../gpg-keys">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#installation">Installation</a></li>
+        
+            <li><a href="#deb-repository">deb repository</a></li>
+        
+    
+        <li class="main "><a href="#configuration">Configuration</a></li>
+        
+            <li><a href="#aptlyconf">aptly.conf</a></li>
+        
+    
+        <li class="main "><a href="#security">Security</a></li>
+        
+    
+        <li class="main "><a href="#upgrade">Upgrade</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="installation">Installation</h1>
+<h2 id="deb-repository">deb repository</h2>
+<p>Native packages are available for aptly. Create the following repo file.</p>
+<p><code>/etc/apt/sources.list.d/aptly.list<code></p>
+<pre class="prettyprint well"><code>deb http://repo.aptly.info/ squeeze main
+</code></pre>
+
+<p>Update and install</p>
+<pre class="prettyprint well"><code>sudo apt-get update
+sudo apt-get install aptly
+</code></pre>
+
+<h1 id="configuration">Configuration</h1>
+<h2 id="aptlyconf">aptly.conf</h2>
+<pre class="prettyprint well"><code>{
+  &quot;rootDir&quot;: &quot;/var/lib/aptly&quot;,
+  &quot;downloadConcurrency&quot;: 4,
+  &quot;architectures&quot;: [],
+  &quot;dependencyFollowSuggests&quot;: false,
+  &quot;dependencyFollowRecommends&quot;: false,
+  &quot;dependencyFollowAllVariants&quot;: false,
+  &quot;dependencyFollowSource&quot;: false,
+  &quot;gpgDisableSign&quot;: false,
+  &quot;gpgDisableVerify&quot;: false,
+  &quot;downloadSourcePackages&quot;: false,
+  &quot;ppaDistributorID&quot;: &quot;ubuntu&quot;,
+  &quot;ppaCodename&quot;: &quot;&quot;,
+  &quot;S3PublishEndpoints&quot;: {
+    &quot;static-images&quot;: {
+      &quot;region&quot;: &quot;us-east-1&quot;,
+      &quot;bucket&quot;: &quot;rls-deploy-packages&quot;,
+      &quot;awsAccessKeyID&quot;: &quot;***********&quot;,
+      &quot;awsSecretAccessKey&quot;: &quot;***********&quot;,
+      &quot;prefix&quot;: &quot;&quot;,
+      &quot;acl&quot;: &quot;private&quot;
+    },
+    &quot;c2c&quot;: {
+      &quot;region&quot;: &quot;us-west-2&quot;,
+      &quot;bucket&quot;: &quot;c2c-rls-deploy-packages&quot;,
+      &quot;awsAccessKeyID&quot;: &quot;***********&quot;,
+      &quot;awsSecretAccessKey&quot;: v
+      &quot;prefix&quot;: &quot;&quot;,
+      &quot;acl&quot;: &quot;private&quot;
+    }
+  }
+}
+</code></pre>
+
+<h1 id="security">Security</h1>
+<p>The <code>/var/lib/aptly</code> is owned by user <code>rls</code> in order to avoid using <code>sudo</code> to perform any operation.</p>
+<h1 id="upgrade">Upgrade</h1>
+<p>Check current version</p>
+<pre class="prettyprint well"><code>rls@rls-jenkins:~$ aptly version
+aptly version: 0.7.1
+rls@rls-jenkins:~$
+</code></pre>
+
+<p>Check available versions.</p>
+<pre class="prettyprint well"><code>rls@rls-jenkins:~$ sudo apt-get update
+...
+rls@rls-jenkins:~$ apt-cache madison aptly
+     aptly |        0.8 | http://repo.aptly.info/ squeeze/main amd64 Packages
+     aptly |      0.7.1 | http://repo.aptly.info/ squeeze/main amd64 Packages
+     aptly |        0.7 | http://repo.aptly.info/ squeeze/main amd64 Packages
+     aptly |        0.6 | http://repo.aptly.info/ squeeze/main amd64 Packages
+     aptly |      0.5.1 | http://repo.aptly.info/ squeeze/main amd64 Packages
+     aptly |        0.5 | http://repo.aptly.info/ squeeze/main amd64 Packages
+     aptly |      0.4.1 | http://repo.aptly.info/ squeeze/main amd64 Packages
+rls@rls-jenkins:~$
+</code></pre>
+
+<p>Install the new version.</p>
+<pre class="prettyprint well"><code>sudo apt-get install aptly
+</code></pre>
+
+<p>Check version.</p>
+<pre class="prettyprint well"><code>rls@rls-jenkins:~$ aptly version
+aptly version: 0.8
+rls@rls-jenkins:~$
+</code></pre>
+
+</div>
+        </div>
+
+        
+
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="../../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../../js/prettify-1.0.min.js"></script>
+        <script src="../../js/base.js"></script>
+    </body>
+</html>
