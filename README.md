@@ -16,6 +16,6 @@ Following the Ansible tradition of naming releases after Van Halen songs, this r
 
 This repository is used from the rls-jenkins server (privatecloud) in the /home/local/git/startmeup directory and keep up to date via the job [rls-jenkins-git](http://jenkins.acme.com/job/rls-jenkins-git/) in the main jenkins server
 
-Documentation available at the [Doc pages](http://otsuarez.github.io/startmeup/)
+Documentation available at the [Doc pages](http://olx-inc.github.io/startmeup/)
 
 
